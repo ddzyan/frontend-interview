@@ -51,7 +51,7 @@
 * [q455 分发饼干](./leetCode/q455分发饼干)
 * [q746 使用最小花费爬楼梯](./leetCode/q746使用最小花费爬楼梯)
 * [q820 单词的压缩编码](./leetCode/q820单词的压缩编码)
-* [q146LRU 缓存](./leetCode/q146LRU缓存)
+* [q146LRU 缓存 ⭐️⭐️⭐️⭐️⭐️](./leetCode/q146LRU缓存)
 
 ## 剑指 offer
 
