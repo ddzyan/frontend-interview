@@ -43,7 +43,7 @@ class LRUCache {
       return -1;
     }
 
-    this.removeNodeToHead(node);
+    this.moveNodeToHead(node);
     return node.value;
   }
 
@@ -59,7 +59,7 @@ class LRUCache {
       }
     } else {
       node.value = value;
-      this.removeNodeToHead(node);
+      this.moveNodeToHead(node);
     }
   }
 
@@ -80,6 +80,9 @@ class LRUCache {
 
     prevNode.next = nextNode;
     nextNode.prev = prevNode;
+
+    delete this.hashMap[node.key];
+    this.count--;
   }
 
   // 移动节点到头部
@@ -100,8 +103,6 @@ class LRUCache {
   removeLRUItem() {
     const node = this.popTail();
     this.removeNode(node);
-    delete this.hashMap[node.key];
-    this.count--;
   }
 
   output() {

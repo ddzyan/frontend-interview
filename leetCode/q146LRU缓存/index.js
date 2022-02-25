@@ -40,7 +40,7 @@ class LRUCache {
   get(key) {
     const node = this.hashMap[key];
     if (!node) {
-      return -f;
+      return -1;
     }
 
     this.moveNodeToHead(node);
@@ -74,11 +74,13 @@ class LRUCache {
   }
 
   removeNode(node) {
-    const headNode = node.prev;
-    const tailNode = node.next;
+    const prevNode = node.prev;
+    const nextNode = node.next;
 
-    headNode.next = tailNode;
-    tailNode.prev = headNode;
+    prevNode.next = nextNode;
+    nextNode.prev = prevNode;
+
+    delete this.hashMap[node.key];
     this.count--;
   }
 
@@ -93,6 +95,18 @@ class LRUCache {
 
     this.headNode.next.prev = node;
     this.headNode.next = node;
+    this.count++;
+  }
+
+  output() {
+    let linkNode = this.headNode.next;
+
+    let text = "";
+    while (linkNode.value) {
+      text = `{${linkNode.key}:${linkNode.value}},` + text;
+      linkNode = linkNode.next;
+    }
+    console.log(text);
   }
 }
 
