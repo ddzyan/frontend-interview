@@ -19,6 +19,7 @@ class LinkNode {
   constructor(key, value) {
     this.key = key;
     this.value = value;
+
     this.next = null;
     this.prev = null;
   }
@@ -32,7 +33,6 @@ class LRUCache {
     this.hashMap = {};
     this.headNode = new LinkNode();
     this.tailNode = new LinkNode();
-
     this.headNode.next = this.tailNode;
     this.tailNode.prev = this.headNode;
   }
@@ -44,6 +44,7 @@ class LRUCache {
     }
 
     this.moveNodeToHead(node);
+
     return node.value;
   }
 
@@ -53,9 +54,8 @@ class LRUCache {
       const linkNode = new LinkNode(key, value);
       this.hashMap[key] = linkNode;
       this.addNodeToHead(linkNode);
-      this.count++;
       if (this.count > this.capacity) {
-        this.removeLRUItem();
+        this.removeLRUNode();
       }
     } else {
       node.value = value;
@@ -63,17 +63,16 @@ class LRUCache {
     }
   }
 
-  // 添加节点到头部
-  addNodeToHead(node) {
-    // 顺序写错会导致指针异常
-    node.prev = this.headNode;
-    node.next = this.headNode.next;
-
-    this.headNode.next.prev = node;
-    this.headNode.next = node;
+  moveNodeToHead(node) {
+    this.removeNode(node);
+    this.addNodeToHead(node);
   }
 
-  // 移除节点
+  removeLRUNode() {
+    const node = this.popTailNode();
+    this.removeNode(node);
+  }
+
   removeNode(node) {
     const prevNode = node.prev;
     const nextNode = node.next;
@@ -85,24 +84,18 @@ class LRUCache {
     this.count--;
   }
 
-  // 移动节点到头部
-  removeNodeToHead(node) {
-    // 删除节点
-    this.removeNode(node);
-    // 添加节点到头部
-    this.addNodeToHead(node);
-  }
-
-  // 获取最后一个节点
-  popTail() {
+  popTailNode() {
     const node = this.tailNode.prev;
     return node;
   }
 
-  // 删除最近最少使用节点
-  removeLRUItem() {
-    const node = this.popTail();
-    this.removeNode(node);
+  addNodeToHead(node) {
+    node.prev = this.headNode;
+    node.next = this.headNode.next;
+
+    this.headNode.next.prev = node;
+    this.headNode.next = node;
+    this.count++;
   }
 
   output() {
@@ -110,7 +103,7 @@ class LRUCache {
 
     let text = "";
     while (linkNode.value) {
-      text = `{${linkNode.key}:${linkNode.value}}==>` + text;
+      text = `{${linkNode.key}:${linkNode.value}},` + text;
       linkNode = linkNode.next;
     }
     console.log(text);

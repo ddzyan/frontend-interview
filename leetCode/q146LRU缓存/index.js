@@ -20,17 +20,18 @@ class LinkNode {
     this.key = key;
     this.value = value;
 
-    this.next = null;
     this.prev = null;
+    this.next = null;
   }
 }
 
 class LRUCache {
   constructor(capacity) {
     this.capacity = capacity;
-    this.count = 0;
 
+    this.count = 0;
     this.hashMap = {};
+
     this.headNode = new LinkNode();
     this.tailNode = new LinkNode();
     this.headNode.next = this.tailNode;
@@ -44,7 +45,6 @@ class LRUCache {
     }
 
     this.moveNodeToHead(node);
-
     return node.value;
   }
 
@@ -54,8 +54,9 @@ class LRUCache {
       const linkNode = new LinkNode(key, value);
       this.hashMap[key] = linkNode;
       this.addNodeToHead(linkNode);
+
       if (this.count > this.capacity) {
-        this.removeLRUNode();
+        this.removeLRUItem();
       }
     } else {
       node.value = value;
@@ -68,9 +69,15 @@ class LRUCache {
     this.addNodeToHead(node);
   }
 
-  removeLRUNode() {
-    const node = this.popTailNode();
-    this.removeNode(node);
+  // 指针的使用非常的重要
+  addNodeToHead(node) {
+    node.prev = this.headNode;
+    node.next = this.headNode.next;
+
+    this.headNode.next.prev = node;
+    this.headNode.next = node;
+
+    this.count++;
   }
 
   removeNode(node) {
@@ -84,18 +91,15 @@ class LRUCache {
     this.count--;
   }
 
-  popTailNode() {
+  getTailNode() {
     const node = this.tailNode.prev;
     return node;
   }
 
-  addNodeToHead(node) {
-    node.prev = this.headNode;
-    node.next = this.headNode.next;
+  removeLRUItem() {
+    const tailNode = this.getTailNode();
 
-    this.headNode.next.prev = node;
-    this.headNode.next = node;
-    this.count++;
+    this.removeNode(tailNode);
   }
 
   output() {
