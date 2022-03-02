@@ -29,32 +29,32 @@
 
 考核重点：了解 javascript 原型链的掌握程度
 
-* [x][源码实现 instanceof](./代码面试/instanceof.js)
-* [ ][源码实现 eventemit]()
+- [x][源码实现 instanceof](./代码面试/instanceof.js)
+- [ ][源码实现 eventemit]()
 
 ## leetCode 刷题
 
-* [x][q5 最长回文子串](./leetCode/q5 最长回文子串)
-* [x][q122 买卖股票的最佳时机](./leetCode/q122 买卖股票的最佳时机)
-* [x][q1 两数之和.js](./leetCode/q1 两数之和.js)
-* [x][q17 电话号码的字母组合.js](./leetCode/q17 电话号码的字母组合.js)
-* [x][q32 最长有效括号](./leetCode/q32 最长有效括号)
-* [x][q33 搜索旋转排序数组.js](./leetCode/q33 搜索旋转排序数组.js)
-* [x][q53 最大子序和](./leetCode/q53 最大子序和)
-* [x][q62 不同路径](./leetCode/q62 不同路径)
-* [x][q64 最小路径和](./leetCode/q64 最小路径和)
-* [x][q72 编辑距离](./leetCode/q72 编辑距离)
-* [x][q86 分隔链表](./leetCode/q86 分隔链表)
-* [x][q104 二叉树的最大深度](./leetCode/q104 二叉树的最大深度)
-* [x][q205 同构字符串](./leetCode/q205 同构字符串)
-* [x][q242 有效的字母异位词](./leetCode/q242 有效的字母异位词)
-* [x][q322 零钱兑换](./leetCode/q322 零钱兑换)
-* [x][q455 分发饼干](./leetCode/q455 分发饼干)
-* [x][q746 使用最小花费爬楼梯](./leetCode/q746 使用最小花费爬楼梯)
-* [x][q820 单词的压缩编码](./leetCode/q820 单词的压缩编码)
-* [x][q146lru 缓存 ⭐️⭐️⭐️⭐️⭐️](./leetCode/q146LRU 缓存)
-  * 字节
+- [x][q5 最长回文子串](./leetCode/q5最长回文子串)
+- [x][q122 买卖股票的最佳时机](./leetCode/q122买卖股票的最佳时机)
+- [x][q1 两数之和.js](./leetCode/q1两数之和.js)
+- [x][q17 电话号码的字母组合.js](./leetCode/q17电话号码的字母组合.js)
+- [x][q32 最长有效括号](./leetCode/q32最长有效括号)
+- [x][q33 搜索旋转排序数组.js](./leetCode/q33搜索旋转排序数组.js)
+- [x][q53 最大子序和](./leetCode/q53最大子序和)
+- [x][q62 不同路径](./leetCode/q62不同路径)
+- [x][q64 最小路径和](./leetCode/q64最小路径和)
+- [x][q72 编辑距离](./leetCode/q72编辑距离)
+- [x][q86 分隔链表](./leetCode/q86分隔链表)
+- [x][q104 二叉树的最大深度](./leetCode/q104二叉树的最大深度)
+- [x][q205 同构字符串](./leetCode/q205同构字符串)
+- [x][q242 有效的字母异位词](./leetCode/q242有效的字母异位词)
+- [x][q322 零钱兑换](./leetCode/q322零钱兑换)
+- [x][q455 分发饼干](./leetCode/q455分发饼干)
+- [x][q746 使用最小花费爬楼梯](./leetCode/q746使用最小花费爬楼梯)
+- [x][q820 单词的压缩编码](./leetCode/q820单词的压缩编码)
+- [x][q146lru 缓存 ⭐️⭐️⭐️⭐️⭐️](./leetCode/q146LRU缓存)
+  - 字节
 
 ## 剑指 offer
 
-* [x][18 删除链表的节点](./leetCode/18 删除链表的节点)
+- [x][18 删除链表的节点](./leetCode/18 删除链表的节点)
