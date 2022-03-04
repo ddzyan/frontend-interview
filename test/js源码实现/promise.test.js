@@ -15,4 +15,17 @@ describe("promise 源码实现", () => {
       done();
     });
   });
+
+  it("promise.then", done => {
+    const promiseDemo = new PromiseDemo((resolve, reject) => {
+      setTimeout(() => {
+        reject("error error");
+      }, 1 * 1000);
+    });
+
+    promiseDemo.catch(res => {
+      assert.strictEqual(res, "error error", "返回值错误");
+      done();
+    });
+  });
 });
