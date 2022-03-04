@@ -1,9 +1,9 @@
-const PENDING = "pending";
-const FULFILLED = "fulfilled";
-const REJECTED = "rejected";
+const PENDING = "PENDING"; // 进行中
+const FULFILLED = "FULFILLED"; // 已成功
+const REJECTED = "REJECTED"; // 已失败
 
 class PromiseDemo {
-  constructor(execFunc) {
+  constructor(execution) {
     this.status = PENDING;
     this.value = undefined;
     this.reason = undefined;
@@ -17,6 +17,7 @@ class PromiseDemo {
         this.onFulFilledCallbackList.forEach(func => func(this.value));
       }
     };
+
     const reject = reason => {
       if (this.status === PENDING) {
         this.status = REJECTED;
@@ -26,7 +27,7 @@ class PromiseDemo {
     };
 
     try {
-      execFunc(resolve, reject);
+      execution(resolve, reject);
     } catch (error) {
       reject(error);
     }
@@ -55,11 +56,11 @@ class PromiseDemo {
     });
   }
 
+  static all() {}
+
   static resolve() {}
 
   static reject() {}
-
-  static all() {}
 
   static race() {}
 }

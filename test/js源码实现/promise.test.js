@@ -16,7 +16,7 @@ describe("promise 源码实现", () => {
     });
   });
 
-  it("promise.then", done => {
+  it("promise.catch", done => {
     const promiseDemo = new PromiseDemo((resolve, reject) => {
       setTimeout(() => {
         reject("error error");
@@ -24,6 +24,7 @@ describe("promise 源码实现", () => {
     });
 
     promiseDemo.catch(res => {
+      console.error(res);
       assert.strictEqual(res, "error error", "返回值错误");
       done();
     });
