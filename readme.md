@@ -19,7 +19,7 @@
 - [x][源码实现深度拷贝](./js源码实现/深度拷贝.js)
 - [x][源码实现instanceof](./js源码实现/instanceof.js)
 - [ ][源码实现eventemit]()
-- [ ][源码实现promise](./js源码实现/promise源码实现)
+- [x][源码实现promise](./js源码实现/promise源码实现)
 
 ## leetCode 刷题
 
