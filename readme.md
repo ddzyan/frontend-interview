@@ -24,6 +24,7 @@
 ## leetCode 刷题
 
 - [x][q5 最长回文子串](./leetCode/q5最长回文子串)
+- [x][q21 合并两个有序链表](./leetCode/q21合并两个有序链表)
 - [x][q122 买卖股票的最佳时机](./leetCode/q122买卖股票的最佳时机)
 - [x][q1 两数之和.js](./leetCode/q1两数之和.js)
 - [x][q17 电话号码的字母组合.js](./leetCode/q17电话号码的字母组合.js)
