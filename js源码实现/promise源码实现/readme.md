@@ -12,7 +12,7 @@ Promise 是 node.js 在优化开发者在异步编程问题的一个阶段性方
   3. onRejected 是一个函数，则 promise 报错原因将作为第一个参数传入，它一定不会在 rejected 状态前触发，它一定不会被触发多次
   4. 在代码执行之前，两个函数都不会被触发
   5. onFulfilled和onRejected一定被作为函数调用(没有this值)
-  6. then必须返回一个promise
+  6. then 必须返回 一个promise
   7. 同一个promise上的then可能被调用多次
 
 了解 Promise 的设计规范后，我们还需要再了解 Promise 的使用方法，其中包含一些静态方法

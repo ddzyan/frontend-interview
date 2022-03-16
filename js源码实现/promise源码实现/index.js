@@ -1,9 +1,9 @@
-const PENDING = "pending";
-const FULFILLED = "fulfilled";
-const REJECTED = "rejected";
+const PENDING = "PENDING"; // 进行中
+const FULFILLED = "FULFILLED"; // 已成功
+const REJECTED = "REJECTED"; // 已失败
 
 class PromiseDemo {
-  constructor(execFunc) {
+  constructor(execution) {
     this.status = PENDING;
     this.value = undefined;
     this.reason = undefined;
@@ -17,6 +17,7 @@ class PromiseDemo {
         this.onFulFilledCallbackList.forEach(func => func(this.value));
       }
     };
+
     const reject = reason => {
       if (this.status === PENDING) {
         this.status = REJECTED;
@@ -26,21 +27,50 @@ class PromiseDemo {
     };
 
     try {
-      execFunc(resolve, reject);
+      execution(resolve, reject);
     } catch (error) {
       reject(error);
     }
   }
-
+  // 返回一个 promise
   then(onFulFilled, onRejected) {
-    process.nextTick(() => {
-      if (this.status === PENDING) {
-        this.onFulFilledCallbackList.push(onFulFilled);
-        this.onRejectedCallbackList.push(onRejected);
-      } else if (this.status === FULFILLED) {
-        onFulFilled(this.value);
-      } else if (this.status === REJECTED) {
-        onRejected(this.reason);
+    const self = this;
+    return new PromiseDemo((resolve, reject) => {
+      if (self.status === PENDING) {
+        self.onFulFilledCallbackList.push(() => {
+          process.nextTick(() => {
+            const result = onFulFilled(self.value);
+            result instanceof Promise
+              ? result.then(resolve, reject)
+              : resolve(result);
+          });
+        });
+        self.onRejectedCallbackList.push(() => {
+          process.nextTick(() => {
+            const result = onRejected(self.value);
+            result instanceof Promise
+              ? result.then(resolve, reject)
+              : resolve(result);
+          });
+        });
+      } else if (self.status === FULFILLED) {
+        self.onFulFilledCallbackList.push(() => {
+          process.nextTick(() => {
+            const result = onFulFilled(self.value);
+            result instanceof Promise
+              ? result.then(resolve, reject)
+              : resolve(result);
+          });
+        });
+      } else if (self.status === REJECTED) {
+        self.onRejectedCallbackList.push(() => {
+          process.nextTick(() => {
+            const result = onRejected(self.value);
+            result instanceof Promise
+              ? result.then(resolve, reject)
+              : resolve(result);
+          });
+        });
       }
     });
   }
@@ -55,11 +85,11 @@ class PromiseDemo {
     });
   }
 
+  static all() {}
+
   static resolve() {}
 
   static reject() {}
-
-  static all() {}
 
   static race() {}
 }

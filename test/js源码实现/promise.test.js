@@ -16,6 +16,24 @@ describe("promise 源码实现", () => {
     });
   });
 
+  it("promise.then promise ", done => {
+    const promiseDemo = new PromiseDemo((resolve, reject) => {
+      setTimeout(() => {
+        // 第一个为修改 promise 状态
+        resolve("hello");
+      }, 1 * 1000);
+    });
+
+    promiseDemo
+      .then(res => {
+        return res + " word";
+      })
+      .then(res => {
+        assert.strictEqual(res, "hello word", "返回值错误");
+        done();
+      });
+  });
+
   it("promise.catch", done => {
     const promiseDemo = new PromiseDemo((resolve, reject) => {
       setTimeout(() => {
@@ -24,7 +42,6 @@ describe("promise 源码实现", () => {
     });
 
     promiseDemo.catch(res => {
-      console.error(res);
       assert.strictEqual(res, "error error", "返回值错误");
       done();
     });

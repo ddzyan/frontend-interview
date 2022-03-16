@@ -32,16 +32,37 @@ class PromiseDemo {
       reject(error);
     }
   }
-
+  // 返回一个 promise
   then(onFulFilled, onRejected) {
-    process.nextTick(() => {
-      if (this.status === PENDING) {
-        this.onFulFilledCallbackList.push(onFulFilled);
-        this.onRejectedCallbackList.push(onRejected);
-      } else if (this.status === FULFILLED) {
-        onFulFilled(this.value);
-      } else if (this.status === REJECTED) {
-        onRejected(this.reason);
+    const self = this;
+    return new PromiseDemo((resolve, reject) => {
+      if (self.status === PENDING) {
+        self.onFulFilledCallbackList.push(() => {
+          const result = onFulFilled(self.value);
+          result instanceof Promise
+            ? result.then(resolve, reject)
+            : resolve(result);
+        });
+        self.onRejectedCallbackList.push(() => {
+          const result = onRejected(self.reason);
+          result instanceof Promise
+            ? result.then(resolve, reject)
+            : resolve(result);
+        });
+      } else if (self.status === FULFILLED) {
+        self.onFulFilledCallbackList.push(() => {
+          const result = onFulFilled(self.value);
+          result instanceof Promise
+            ? result.then(resolve, reject)
+            : resolve(result);
+        });
+      } else if (self.status === REJECTED) {
+        self.onRejectedCallbackList.push(() => {
+          const result = onRejected(self.reason);
+          result instanceof Promise
+            ? result.then(resolve, reject)
+            : resolve(result);
+        });
       }
     });
   }
