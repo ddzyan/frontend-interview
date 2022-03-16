@@ -4,6 +4,8 @@
 
 记录日常遇见的大前端面试题内容，包括但不限于：react，vue，html，node，数据库等，也会增加 leetcode 刷题记录
 
+一味的记录每个问题的答案，并不是最终诉求，目标是在解决问题的过程中，沉淀下分析过程和各个相关知识点，从而融会贯通，举一反三
+
 其他核心仓库请参考：
 
 * [javascript 常见模块使用案例](https://github.com/ddzyan/node-module-example)
