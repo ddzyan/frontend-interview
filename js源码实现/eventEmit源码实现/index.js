@@ -17,8 +17,8 @@ class EventEmitterDemo {
       this._events[eventName].forEach(callback => callback(...arg));
     }
   }
-
-  once() {}
+  // 为名为 eventName 的事件添加一次性侦听器函数。下次触发 eventName 时，将删除此侦听器，然后调用它。
+  once(eventName, callback) {}
 }
 
 module.exports = EventEmitterDemo;
