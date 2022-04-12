@@ -12,17 +12,19 @@
  * @return {number[]}
  */
 const preorderTraversal = function(root) {
-  let res = [];
-  if (!root) return res;
-  const stack = [root];
-  let cur = null;
-  while (stack.length) {
-    cur = stack.pop();
-    res.push(cur.val);
+  if (!root) {
+    return [];
+  }
 
+  let res = [];
+  let stack = [root];
+  while (stack.length) {
+    const cur = stack.pop();
+    res.push(cur.val);
     cur.right && stack.push(cur.right);
     cur.left && stack.push(cur.left);
   }
+
   return res;
 };
 
