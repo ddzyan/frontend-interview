@@ -16,11 +16,13 @@ const preorderTraversal = function(root) {
     return [];
   }
 
-  let res = [];
-  let stack = [root];
+  const res = [];
+  const stack = [root];
+
   while (stack.length) {
     const cur = stack.pop();
     res.push(cur.val);
+
     cur.right && stack.push(cur.right);
     cur.left && stack.push(cur.left);
   }
