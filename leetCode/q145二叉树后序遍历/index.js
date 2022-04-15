@@ -20,11 +20,8 @@ var postorderTraversalOne = function(root) {
   const postTraversal = node => {
     if (!node) return;
 
-    // 先输出左节点
     postTraversal(node.left);
-    // 再输出右节点
     postTraversal(node.right);
-    // 输出根节点
     res.push(node.val);
   };
 
