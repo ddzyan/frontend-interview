@@ -17,37 +17,21 @@ var postorderTraversalOne = function(root) {
 
   const res = [];
 
-  const postOrder = node => {
+  const postTraversal = node => {
     if (!node) return;
-    postOrder(node.left);
-    postOrder(node.right);
+
+    // 先输出左节点
+    postTraversal(node.left);
+    // 再输出右节点
+    postTraversal(node.right);
+    // 输出根节点
     res.push(node.val);
   };
 
-  postOrder(root);
-
-  return res;
-};
-
-var postorderTraversalTwo = function(root) {
-  if (!root) {
-    return [];
-  }
-
-  const res = [];
-  const stack = [root];
-
-  while (stack.length) {
-    const cur = stack.pop();
-    cur.left && stack.push(cur.left);
-    cur.right && stack.push(cur.right);
-    res.push(cur.val);
-  }
-
+  postTraversal(root);
   return res;
 };
 
 module.exports = {
-  postorderTraversalOne,
-  postorderTraversalTwo
+  postorderTraversalOne
 };
