@@ -20,17 +20,17 @@ class LinkNode {
     this.key = key;
     this.value = value;
 
-    this.next = null;
-    this.prev = null;
+    this.prev = undefined;
+    this.next = undefined;
   }
 }
 
 class LRUCache {
   constructor(capacity) {
     this.capacity = capacity;
-    this.count = 0;
 
-    this.hashMap = {};
+    this.count = 0;
+    this.hasMap = {};
     this.headNode = new LinkNode();
     this.tailNode = new LinkNode();
     this.headNode.next = this.tailNode;
@@ -38,55 +38,53 @@ class LRUCache {
   }
 
   get(key) {
-    const node = this.hashMap[key];
+    const node = this.hasMap.get(key);
     if (!node) {
       return -1;
     }
 
     this.moveNodeToHead(node);
-
-    return node.value;
   }
 
   put(key, value) {
-    const node = this.hashMap[key];
+    const node = this.hasMap.get(key);
     if (!node) {
       const linkNode = new LinkNode(key, value);
-      this.hashMap[key] = linkNode;
+      this.hasMap.set(ket, value);
       this.addNodeToHead(linkNode);
+
       if (this.count > this.capacity) {
-        this.removeLRUNode();
+        this.removeLRUItem();
       }
     } else {
       node.value = value;
       this.moveNodeToHead(node);
     }
   }
-
   moveNodeToHead(node) {
     this.removeNode(node);
     this.addNodeToHead(node);
   }
 
-  removeLRUNode() {
-    const node = this.popTailNode();
-    this.removeNode(node);
+  getTailNode() {
+    const tailNode = this.tailNode.prev;
+    return tailNode;
+  }
+
+  removeLRUItem() {
+    const tailNode = this.getTailNode();
+    this.removeNode(tailNode);
   }
 
   removeNode(node) {
     const prevNode = node.prev;
     const nextNode = node.next;
 
-    prevNode.next = nextNode;
-    nextNode.prev = prevNode;
+    prevNode.next = node.next;
+    nextNode.prev = node.prev;
 
-    delete this.hashMap[node.key];
+    this.hasMap.del(node.key);
     this.count--;
-  }
-
-  popTailNode() {
-    const node = this.tailNode.prev;
-    return node;
   }
 
   addNodeToHead(node) {
@@ -95,18 +93,8 @@ class LRUCache {
 
     this.headNode.next.prev = node;
     this.headNode.next = node;
+
     this.count++;
-  }
-
-  output() {
-    let linkNode = this.headNode.next;
-
-    let text = "";
-    while (linkNode.value) {
-      text = `{${linkNode.key}:${linkNode.value}},` + text;
-      linkNode = linkNode.next;
-    }
-    console.log(text);
   }
 }
 
