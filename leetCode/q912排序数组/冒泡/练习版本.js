@@ -11,10 +11,10 @@ function sort(arr) {
         arr[j] = arr[j + 1];
         arr[j + 1] = tmp;
       }
+    }
 
-      if (isSort) {
-        break;
-      }
+    if (!isSort) {
+      break;
     }
   }
 

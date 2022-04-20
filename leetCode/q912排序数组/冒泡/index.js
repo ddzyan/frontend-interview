@@ -8,10 +8,10 @@ function sort(arr) {
     let isSort = false;
     for (let j = 0; j < len - i - 1; j++) {
       if (arr[j] > arr[j + 1]) {
-        isSort = true;
         const tmp = arr[j];
         arr[j] = arr[j + 1];
         arr[j + 1] = tmp;
+        isSort = true;
       }
     }
     if (!isSort) {
