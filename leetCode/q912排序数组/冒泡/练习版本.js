@@ -1,7 +1,5 @@
 function sort(arr) {
-  if (!arr || !Array.isArray(arr) || arr.length === 0) {
-    return [];
-  }
+  if (arr.length === 0) return arr;
 
   const len = arr.length;
   for (let i = 0; i < len; i++) {
@@ -13,9 +11,10 @@ function sort(arr) {
         arr[j] = arr[j + 1];
         arr[j + 1] = tmp;
       }
-    }
-    if (!isSort) {
-      break;
+
+      if (isSort) {
+        break;
+      }
     }
   }
 
